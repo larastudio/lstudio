@@ -10,11 +10,11 @@ use Inertia\Inertia;
 
 class ArticleController extends Controller
 {
-    public function index(User $user, Team $team)
+    public function list()
     {
         $articles = Article::all();
 
-        return Inertia::render('Articles/Index', [
+        return Inertia::render('Articles/List', [
             'articles' => $articles,
             // 'user' => $user,
             // 'team' => $team
