@@ -2,9 +2,9 @@
 
 import AppLayout from '@/Layouts/AppLayout.vue';
 import Editor from '@tinymce/tinymce-vue';
-import { reactive,onMounted } from 'vue';
-import { router } from '@inertiajs/vue3';
 import {useForm } from '@inertiajs/vue3'
+import PrimaryButton from '@/Components/PrimaryButton.vue';
+
 // Import TinyMCE
 import tinymce from 'tinymce/tinymce';
 
@@ -33,37 +33,37 @@ import contentUiSkinCss from 'tinymce/skins/ui/oxide/content.css?inline';
 import contentCss from 'tinymce/skins/content/default/content.css?inline';
 
 
-defineProps({ 
+const props =  defineProps({ 
     article: Object,
     AppLayout,
     'editor': Editor,
 })
 
-// renderTriggered() {
-//     debugger;
-// }
-
-let form = useForm({
-  body: '',
+const form = useForm({
+    body: props.article.body,
 })
 
-// onMounted(() => {
-//     //console.log({props{article:title}}); // <div>
-// })
-
-// Laravel Inertia with form
-let submit = () => {
-  form.post('/dashboard/articles/edit');
+const updateArticleBody = () => {
+    form.put(route('articles.update', props.article), {
+        errorBag: 'updateArticleBody',
+        preserveScroll: true,
+    });
 };
 
-// function submit() {
-//   form.post('/dashboard/articles')
-// }
-
-// function submit() {
-//   router.post('/dashboard/articles/' + article.id, { ...form, article })
-// }
-
+const tinymeceConfig = {
+    content_css: false, 
+    skin: false,
+    content_style: contentUiSkinCss.toString() + '\n' + contentCss.toString(),
+    height: 500,
+    menubar: false,
+    plugins: [
+        'link', 'lists','image', 'anchor', 'wordcount', 'media'
+        ],
+    toolbar:
+    'undo redo | formatselect | bold italic backcolor | \
+    alignleft aligncenter alignright alignjustify | \
+    bullist numlist outdent indent | removeformat'
+    }
 
 </script>
 
@@ -79,26 +79,16 @@ let submit = () => {
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white p-4 overflow-hidden shadow-xl sm:rounded-lg">
                    <editor
-                    :init="{
-                        content_css: false, 
-                        skin: false,
-                        content_style: contentUiSkinCss.toString() + '\n' + contentCss.toString(),
-                        height: 500,
-                        menubar: false,
-                        plugins: [
-                            'link', 'lists','image', 'anchor', 'wordcount', 'media'
-                            ],
-                        toolbar:
-                        'undo redo | formatselect | bold italic backcolor | \
-                        alignleft aligncenter alignright alignjustify | \
-                        bullist numlist outdent indent | removeformat'
-                    }"
+                    :init="tinymeceConfig"
+                    @submitted="updateArticleBody"
+                    id="body"
                     v-model="form.body"
+                    type="html"
                     />
                 </div>
-                <div class="mb-6">
-                    <button type="submit" class="bg-blue-400 text-white rounded py-2 px-4 hover:bg-blue-500" :disabled="form.processing">Submit</button>
-                </div>
+                <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                Save
+            </PrimaryButton>
             </div>
         </div>
     </app-layout>

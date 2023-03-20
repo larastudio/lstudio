@@ -35,7 +35,7 @@ defineProps({
                 <tr v-for="article in articles.data" :key="article.id" class="border-b border-gray-200">
                     <td class="px-4 py-3">{{ article.id }}</td>
                     <td class="px-4 py-3">{{ article.title }}</td>
-                    <td class="px-4 py-3">{{ article.content }}</td>
+                    <td class="px-4 py-3">{{ article.body }}</td>
                     <td class="px-4 py-3">{{ article.created_at }}</td>
                 </tr> 
                 <!-- each row -->

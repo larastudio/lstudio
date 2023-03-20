@@ -1,15 +1,17 @@
 <script setup>
 
 import AppLayout from '@/Layouts/AppLayout.vue'
-import { Head } from '@inertiajs/vue3';
 import Editor from '@tinymce/tinymce-vue'
+import {useForm } from '@inertiajs/vue3'
 
-
-defineProps({ 
-    articles: Object,
+const props =   defineProps({ 
+    article: Object,
     AppLayout,
-    Head,
     'editor': Editor,
+})
+
+const form = useForm({
+    body: props.article.body,
 })
 
 </script>
@@ -22,7 +24,7 @@ defineProps({
          <div class="py-12">
              <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                  <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
-                     {{ article.content }}
+                     {{ article.body }}
                  </div>
              </div>
          </div>

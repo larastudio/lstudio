@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Article;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 class ArticleBackendController extends Controller
@@ -60,7 +61,7 @@ class ArticleBackendController extends Controller
             'article' => [
                 'id' => $article->id,
                 'title' => $article->title,
-                'body' => $article->content
+                'body' => $article->body
             ]
         ]);
     }
@@ -90,16 +91,15 @@ class ArticleBackendController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Article $article)
-{
-    $article->update(
-    $request->validate([
-        // 'name' => ['required', 'min:50'],
-        'body' => ['required'],
-    ])
-    );
+    {
+        $article->update([
+            // 'title' => $request->input('title'),
+            'body' => $request->input('body'),
+        ]);
 
-    return to_route('articles/show');
-}
+        return Redirect::back()->with('success', 'Article updated successfully!');
+    }
+
 
     /**
      * Remove the specified resource from storage.

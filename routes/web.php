@@ -35,8 +35,14 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
-    Route::resource('dashboard/articles', ArticleBackendController::class);
-    Route::post('/dashboard/articles/edit', [ArticleBackendController::class, 'update']);
+    // get all articles
+    Route::get('dashboard/articles', [ArticleBackendController::class, 'index'])->name('articles.index');
+    // edit article
+    Route::get('dashboard/articles/{article}/edit', [ArticleBackendController::class, 'edit'])->name('articles.edit');
+     // show article
+     Route::get('/dashboard/articles/{article}', [ArticleBackendController::class, 'show'])->name('articles.show');
+     // update article
+    Route::put('/dashboard/articles/{article}', [ArticleBackendController::class, 'update'])->name('articles.update');
 
 });
 
