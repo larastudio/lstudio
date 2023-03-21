@@ -75,22 +75,21 @@ const tinymeceConfig = {
             </h2>
         </template>
 
-        <div class="py-12">
+        <form @submit.prevent="updateArticleBody" class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div class="bg-white p-4 overflow-hidden shadow-xl sm:rounded-lg">
                    <editor
                     :init="tinymeceConfig"
-                    @submitted="updateArticleBody"
                     id="body"
                     v-model="form.body"
-                    type="html"
+                    type="text"
                     />
                 </div>
                 <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                 Save
             </PrimaryButton>
             </div>
-        </div>
+        </form>
     </app-layout>
 </template>
 
