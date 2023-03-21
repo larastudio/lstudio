@@ -97,7 +97,8 @@ class ArticleBackendController extends Controller
             'body' => $request->input('body'),
         ]);
 
-        return Redirect::back()->with('success', 'Article updated successfully!');
+        // return Redirect::back()->with('success', 'Article updated successfully!');
+        return to_route('articles.show', array('article' => $article));
     }
 
 
