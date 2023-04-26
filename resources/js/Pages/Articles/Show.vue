@@ -1,6 +1,6 @@
 <script setup>
 
-import AppLayout from '@/Layouts/AppLayout.vue'
+import AppLayout from '@/Layouts/FrontLayout.vue'
 import Editor from '@tinymce/tinymce-vue'
 import {useForm } from '@inertiajs/vue3'
 
