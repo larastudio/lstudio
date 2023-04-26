@@ -85,7 +85,7 @@ const tinymeceConfig = {
                     type="text"
                     />
                 </div>
-                <PrimaryButton :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                <PrimaryButton class="mt-3" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                 Save
             </PrimaryButton>
             </div>
