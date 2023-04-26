@@ -1,5 +1,6 @@
 <script setup>
 
+import AppLayout from '@/Layouts/AppLayout.vue'
 import { Head } from '@inertiajs/vue3'
 
 defineProps({ 
@@ -23,12 +24,14 @@ defineProps({
                 <tr class="text-left border-b-2 border-gray-200">
                     <th class="px-4 py-3">Article Id</th>
                     <th class="px-4 py-3">Title</th>
+                    <th class="px-4 py-3">Edit</th>
                     <th class="px-4 py-3">Creation Date</th>
                 </tr>
                 
                 <tr v-for="article in articles" :key="article.id" class="border-b border-gray-200">
                     <td class="px-4 py-3">{{ article.id }}</td>
                     <td class="px-4 py-3"><a :href="`/articles/${article.id}`">{{ article.title }}</a></td>
+                    <td class="px-4 py-3"><a :href="`/dashboard/articles/${article.id}/edit`">edit</a></td>
                     <td class="px-4 py-3">{{ article.created_at }}</td>
                 </tr> 
                 </table>
