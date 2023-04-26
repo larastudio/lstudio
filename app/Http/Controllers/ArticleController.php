@@ -20,4 +20,20 @@ class ArticleController extends Controller
             // 'team' => $team
         ]);
     }
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Article $article)
+    {
+        return Inertia::render('Articles/Show', [
+            'article' => [
+                'id' => $article->id,
+                'title' => $article->title,
+                'body' => $article->body
+            ]
+        ]);
+    }
 }
