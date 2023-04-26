@@ -40,11 +40,14 @@ Route::middleware([
     // edit article
     Route::get('dashboard/articles/{article}/edit', [ArticleBackendController::class, 'edit'])->name('articles.edit');
      // show article
-     Route::get('/dashboard/articles/{article}', [ArticleBackendController::class, 'show'])->name('articles.show');
-     // update article
+     // Route::get('/dashboard/articles/{article}', [ArticleBackendController::class, 'show'])->name('articles.show');
+    // update article
     Route::put('/dashboard/articles/{article}', [ArticleBackendController::class, 'update'])->name('articles.update');
+    // list articles
+    Route::get('/dashboard/articles', [ArticleController::class, 'list'])->name('articles.list');
 
 });
 
 // Frontend
-Route::get('/articles', [ArticleController::class, 'list'])->name('articles.list');
+// show article
+Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('articles.show');
