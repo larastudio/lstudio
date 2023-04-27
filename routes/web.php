@@ -25,7 +25,7 @@ Route::get('/', function () {
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
-});
+})->name('home');
 
 Route::middleware([
     'auth:sanctum',
@@ -49,5 +49,6 @@ Route::middleware([
 });
 
 // Frontend
+
 // show article
 Route::get('/articles/{article}', [ArticleController::class, 'show'])->name('articles.show');
