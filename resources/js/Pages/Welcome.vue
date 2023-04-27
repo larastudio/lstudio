@@ -25,7 +25,7 @@ defineProps({
 
         <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
             <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
-                <h1 class="text-white text-2xl">Lara.studio</h1>
+                <h1 class="text-gray-900 dark:text-white text-4xl">Lara.studio</h1>
             </div>
 
             <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
@@ -40,7 +40,7 @@ defineProps({
 
                         <div class="ml-12">
                             <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                Laravel has wonderful, thorough documentation covering every aspect of the framework. Whether you are new to the framework or have previous experience with Laravel, we recommend reading all of the documentation from beginning to end.
+                                Laravel and Vue are powerful tools we use to create fast, beautiful SaaS apps for clients. Laravel is great for backend development, while Vue makes dynamic and responsive user interfaces. Together, we build scalable and maintainable apps with exceptional user experiences. The result? Streamlined development, reduced time, and high-quality apps tailored to clients' needs.
                             </div>
                         </div>
                     </div>
