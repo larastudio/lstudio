@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Article;
 use App\Http\Controllers\ArticleBackendController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\Backend\ArticleController as BackendArticleController;
@@ -24,6 +25,7 @@ Route::get('/', function () {
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
+        'articles' => Article::latest()->get(),
     ]);
 })->name('home');
 
