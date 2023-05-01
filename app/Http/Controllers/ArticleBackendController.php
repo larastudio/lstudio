@@ -6,6 +6,7 @@ use App\Models\Article;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Str;
 use Inertia\Inertia;
 
 class ArticleBackendController extends Controller
@@ -95,6 +96,7 @@ class ArticleBackendController extends Controller
         $article->update([
             // 'title' => $request->input('title'),
             'body' => $request->input('body'),
+            'excerpt' => Str::words($request->input('body'), 30, '') . '...',
         ]);
 
         // return Redirect::back()->with('success', 'Article updated successfully!');

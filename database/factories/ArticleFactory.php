@@ -22,6 +22,7 @@ class ArticleFactory extends Factory
         return [
             'title' => $this->faker->sentence(6),
             'body' => $this->faker->paragraph(4),
+            'excerpt' => $this->faker->sentence(4),
             'user_id' => User::factory(),
         ];
     }

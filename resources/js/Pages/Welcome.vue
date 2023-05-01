@@ -1,24 +1,25 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { Head, Link } from '@inertiajs/vue3';
 import {useForm } from '@inertiajs/vue3'
 
-defineProps({
+const props = defineProps({
     canLogin: Boolean,
     canRegister: Boolean,
     laravelVersion: String,
     phpVersion: String,
     articles: Object,
-    // randomNumber:''
 })
 
-// const randomNumber =ref<number>(0)
+// const slicedBody = computed(() => props.articles.slice(0, 300));
 
-// class randomNumber {
-//     constructor() {
-//     this.randomNumber = Math.random() * 100; //multiply to generate random number between 0, 100 
+// computed: {
+//     truncatedBody() {
+//       return this.article.body.slice(0, 300);
 //     }
-// }
+//   };
+
+
 </script>
 
 <template>
@@ -37,7 +38,7 @@ defineProps({
 
         <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
             <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
-                <h1 class="text-gray-900 dark:text-white text-4xl">Lara.studio</h1>
+                <h1 class="text-gray-900 dark:text-white text-4xl mt-20">Lara.studio</h1>
             </div>
 
             <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
@@ -104,9 +105,9 @@ defineProps({
                 </div>
             </div>
 
-            
+            <h2 class="text-gray-900 dark:text-white text-2xl mt-10">Latest Articles</h2>
             <!-- Snippet -->
-            <section class="flex flex-col justify-center antialiased text-gray-600 pt-10" v-for="article in articles" :key="article.id">
+            <section class="flex flex-col justify-center antialiased text-gray-600 pt-5" v-for="article in articles" :key="article.id">
                 <div class="h-full">
                     <!-- Card -->
                     <div class=" mx-auto bg-white dark:bg-gray-800 shadow rounded-lg">
@@ -143,7 +144,7 @@ defineProps({
                                     <div class="flex items-end justify-between whitespace-normal">
                                         <!-- Paragraph -->
                                         <article class="max-w-4xl text-gray-600 dark:text-gray-400 text-sm" >
-                                            <p class="mb-2">{{ article.body }}</p>
+                                            <p class="mb-2" v-html="article.excerpt"></p>
                                         </article>
                                         <!-- More link -->
                                         <a class="flex-shrink-0 flex items-center justify-center text-gray-600 dark:text-gray-400 text-sm w-10 h-10 rounded-full bg-gradient-to-b from-indigo-50 to-indigo-100 hover:from-white hover:to-indigo-50 focus:outline-none focus-visible:from-white focus-visible:to-white transition duration-150 ml-2" href="#0">
@@ -156,7 +157,7 @@ defineProps({
                     </div>
                 </div>
             </section>
-            <div class="flex justify-center mt-4 sm:items-center sm:justify-between">
+            <div class="flex justify-center mt-4 sm:items-center sm:justify-between mb-10">
                 <div class="text-center text-sm text-gray-500 sm:text-left">
                     <div class="flex items-center">
                         
