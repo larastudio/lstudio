@@ -1,0 +1,47 @@
+import:
+  - recipe/laravel.php
+  - contrib/php-fpm.php
+  - contrib/npm.php
+
+config:
+  application: 'larastudio-app'
+  repository: 'git@github.com:larastudio/lstudio.git'
+  php_fpm_version: '8.2'
+  keep_releases: '10'
+  shared_files: 
+    - '.env'
+  shared_dirs:
+    - 'bootstrap/cache'
+    - 'storage/framework/cache'
+    - 'storage/framework/sessions'
+    - 'storage/framework/views'
+    - 'storage/logs'
+  writable_dirs:
+    - 'storage/framework/cache/data'
+    - 'storage/logs'
+
+hosts:
+  prod:
+    hostname: 'lara.studio'
+    remote_user: forge
+    deploy_path: '~/{{hostname}}'
+
+tasks:
+  deploy:
+    - deploy:prepare
+    - deploy:vendors
+    - artisan:storage:link
+    - artisan:view:cache
+    - artisan:config:cache
+    - artisan:optimize
+    - artisan:migrate
+    - npm:install
+    - npm:run:prod
+    - artisan:queue:restart    
+    - artisan:horizon:terminate
+    - deploy:publish
+  npm:run:build:
+    - run: 'cd {{release_path}} && npm run build'
+
+after:
+  deploy:failed: deploy:unlock
