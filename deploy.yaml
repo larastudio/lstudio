@@ -36,7 +36,7 @@ tasks:
     - artisan:optimize
     - artisan:migrate
     - npm:install
-    - npm:run:prod
+    - npm:run:build
     - artisan:queue:restart    
     - artisan:horizon:terminate
     - deploy:publish
