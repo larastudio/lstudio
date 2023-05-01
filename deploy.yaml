@@ -37,8 +37,8 @@ tasks:
     - artisan:migrate
     - npm:install
     - npm:run:build
-    - artisan:queue:restart    
-    - artisan:horizon:terminate
+    # - artisan:queue:restart    
+    # - artisan:horizon:terminate
     - deploy:publish
   npm:run:build:
     - run: 'cd {{release_path}} && npm run build'
